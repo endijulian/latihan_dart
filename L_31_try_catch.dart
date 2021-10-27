@@ -3,14 +3,18 @@ Future<void> main() async {
   print('Data telah selesai diproses...');
 }
 
-Future<String> printData() async {
-  var data = await fetchData();
-  return 'Data $data';
+Future printData() async {
+  try {
+    var data = await fetchData();
+    return 'Data $data';
+  } catch (err) {
+    return err;
+  }
 }
 
 Future fetchData() {
   return Future.delayed(
     Duration(seconds: 5),
-    () => print('Data fetch diprint'),
+    () => throw ('Data gagal diproses'),
   );
 }
